@@ -6,10 +6,8 @@ import * as api from '../api/users';
 function* getUsers() {
     try {
         const result = yield call(api.getUsers);
-        
-        put(actions.getUsersSuccess({
-            items: result.data.data
-        }));
+
+        yield put(actions.getUsersSuccess({ items: result.data.data }));
     } catch (e) {
 
     }
