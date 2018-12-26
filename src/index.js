@@ -11,7 +11,7 @@ import rootSaga from './sagas';
 import * as serviceWorker from './serviceWorker';
 
 axios.defaults.withCredentials = true;
-axios.defaults.baseUrl = 'http://rem-rest-api.herokuapp.com/api';
+axios.defaults.baseURL = 'http://rem-rest-api.herokuapp.com/api';
 
 const sagaMiddleware = createSagaMiddleware();
 const store = createStore(reducers, applyMiddleware(sagaMiddleware));

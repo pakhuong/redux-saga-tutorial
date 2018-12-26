@@ -1,9 +1,9 @@
 import axios from 'axios';
 
 export const getUsers = () => {
-    return axios.get('/users', {
+    return axios.get('users', {
         params: {
-            limit: 10
+            limit: 1000
         }
     });
 };
