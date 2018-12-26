@@ -1,8 +1,12 @@
+import axios from 'axios';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
+
+import App from './components/App';
 import * as serviceWorker from './serviceWorker';
+
+axios.defaults.withCredentials = true;
+axios.defaults.baseUrl = 'http://rem-rest-api.herokuapp.com/api';
 
 ReactDOM.render(<App />, document.getElementById('root'));
 
