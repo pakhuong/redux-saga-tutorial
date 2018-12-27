@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { getUsersRequest } from '../actions/users';
+import { createUserRequest, getUsersRequest } from '../actions/users';
 import NewUserForm from './NewUserForm';
 import UsersList from './UsersList';
 
@@ -14,7 +14,7 @@ class App extends Component {
     }
 
     handleSubmit = ({ firstName, lastName }) => {
-        console.log(firstName, lastName);
+        this.props.createUserRequest({ firstName, lastName });
     };
 
     render() {
@@ -30,6 +30,6 @@ class App extends Component {
 }
 
 const mapStateToProps = ({ users }) => ({ users });
-const mapDispatchToProps = dispatch => bindActionCreators({ getUsersRequest }, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators({ createUserRequest, getUsersRequest }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
