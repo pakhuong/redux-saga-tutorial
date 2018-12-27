@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { createUserRequest, getUsersRequest } from '../actions/users';
+import { createUserRequest, deleteUserRequest, getUsersRequest } from '../actions/users';
 import NewUserForm from './NewUserForm';
 import UsersList from './UsersList';
 
@@ -17,19 +17,30 @@ class App extends Component {
         this.props.createUserRequest({ firstName, lastName });
     };
 
+    handleDeleteUserClick = userId => {
+        this.props.deleteUserRequest(userId);
+    };
+
     render() {
         const { users } = this.props;
 
         return (
             <div style={{ margin: '0 auto', padding: '20px', maxWidth: '600px' }}>
                 <NewUserForm onSubmit={this.handleSubmit} />
-                <UsersList users={users.items} />
+                <UsersList onDeleteUser={this.handleDeleteUserClick} users={users.items} />
             </div>
         );
     }
 }
 
 const mapStateToProps = ({ users }) => ({ users });
-const mapDispatchToProps = dispatch => bindActionCreators({ createUserRequest, getUsersRequest }, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators(
+    {
+        createUserRequest,
+        deleteUserRequest,
+        getUsersRequest 
+    },
+    dispatch
+);
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
